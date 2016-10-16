@@ -1,1 +1,8 @@
-<sbio-player-score *ngFor="let player of players" [player]="player"></sbio-player-score>
+<div class="player-list">
+  <div *ngFor="let player of players" class="list-item">
+    <sbio-player-score [player]="player"></sbio-player-score>
+  </div>
+</div>
+<div class="container">
+  <sbio-add-player (onAddUser)="addPlayer($event)"></sbio-add-player>
+</div>

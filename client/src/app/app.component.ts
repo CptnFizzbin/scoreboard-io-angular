@@ -5,7 +5,7 @@ import {Player, PlayerService} from "./shared/index";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['app.component.scss'],
   providers: [PlayerService]
 })
 export class AppComponent implements OnInit {
@@ -18,5 +18,9 @@ export class AppComponent implements OnInit {
     this.playerService
       .get()
       .subscribe(players => this.players = players);
+  }
+
+  protected addPlayer(newPlayer:Player) {
+    this.players.push(newPlayer);
   }
 }

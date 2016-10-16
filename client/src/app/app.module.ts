@@ -5,12 +5,13 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
 import {AppComponent} from './app.component';
-import {PlayerScoreComponent} from './shared/index';
+import {PlayerScoreComponent, AddPlayerComponent} from './shared/index';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerScoreComponent
+    PlayerScoreComponent,
+    AddPlayerComponent
   ],
   imports: [
     BrowserModule,
