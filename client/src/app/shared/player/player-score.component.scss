@@ -1,0 +1,12 @@
+.player-score {
+  display: inline-block;
+  margin: .5rem;
+
+  .score {
+    font-size: 2em;
+    display: inline-block;
+    text-align: center;
+    margin: 0 1rem;
+    min-width: 3rem;
+  }
+}
