@@ -1,6 +1,8 @@
-<div class="add-player">
-  <md-card-content>
-    <md-input placeholder="Name" [(ngModel)]="newPlayer.name"></md-input>
-    <button md-button (click)="addPlayer()">Add</button>
-  </md-card-content>
-</div>
+<form (submit)="addPlayer()">
+  <div class="add-player">
+    <md-card-content>
+      <md-input name='player.name' placeholder="Name" [(ngModel)]="newPlayer.name"></md-input>
+      <button md-button type="submit">Add</button>
+    </md-card-content>
+  </div>
+</form>
