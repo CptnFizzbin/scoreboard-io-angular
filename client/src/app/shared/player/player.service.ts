@@ -26,7 +26,7 @@ export class PlayerService {
   get(): Observable<Player[]> {
     return this.http.get('/assets/data.json')
       .map((res: Response) => res.json())
-      .map(json => json.players)
+      .map(json => json.players.map(player => new Player(player)))
       .catch(this.handleError);
   }
 

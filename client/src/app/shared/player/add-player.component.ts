@@ -24,6 +24,6 @@ export class AddPlayerComponent {
   }
 
   private clear() {
-    this.newPlayer = { name: '' }
+    this.newPlayer = new Player();
   }
 }

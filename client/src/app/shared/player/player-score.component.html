@@ -1,10 +1,13 @@
 <md-card class="player-score">
   <md-card-title-group>
     <md-card-title>{{player.name}}</md-card-title>
+    <div class="round-score" [ngClass]="{'active': relScoreActive }">
+      {{roundScoreString}}
+    </div>
   </md-card-title-group>
   <md-card-content class="score-area">
     <button md-raised-button (click)="removeScore(1)">-</button>
-    <span class="score">{{score}}</span>
+    <span class="score">{{player.score}}</span>
     <button md-raised-button (click)="addScore(1)">+</button>
   </md-card-content>
 </md-card>
