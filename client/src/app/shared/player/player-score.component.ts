@@ -60,4 +60,24 @@ export class PlayerScoreComponent {
       return this.roundScore.toString();
     }
   }
+
+  public get placementString() {
+    return this.getOrdinalValue(this.placement);
+  }
+
+  private getOrdinalValue(value) {
+    var ones = value % 10;
+    var teens = value % 100;
+
+    if (ones == 1 && teens != 11) {
+      return value + "st";
+    }
+    if (ones == 2 && teens != 12) {
+      return value + "nd";
+    }
+    if (ones == 3 && teens != 13) {
+      return value + "rd";
+    }
+    return value + "th";
+  }
 }

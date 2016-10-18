@@ -5,35 +5,60 @@
     order: 0;
     flex: 1 1 auto;
     align-self: auto;
+
+    font-size: 2em;
+    display: inline-block;
+    text-align: center;
+    margin: 0 1rem;
   }
 }
 
-.score {
-  font-size: 2em;
-  display: inline-block;
-  text-align: center;
-  margin: 0 1rem;
-}
+.header {
+  & > * {
+    vertical-align: middle;
+    line-height: normal;
+  }
 
-.round-score {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  .name {
+    font-size: 2em;
+  }
 
-  color: white;
-  background: #00BCD4;
+  .placement {
+    vertical-align: middle;
+    text-align: center;
+    min-width: 3rem;
+    margin-right: 5px;
+    background-color: #efefef;
 
-  padding: .5rem;
-  min-width: 3rem;
-  text-align: center;
-  border-radius: 5px;
+    &.placement-1 { background-color: darkgoldenrod; }
+    &.placement-2 { background-color: silver; }
+    &.placement-3 { background-color: saddlebrown; color: white }
+  }
 
-  transition: opacity 2s;
-  transition-duration: 2s;
-  opacity: 0;
+  .round-score {
+    position: absolute;
+    top: 24px;
+    right: 24px;
 
-  &.active {
-    transition-duration: 0s;
-    opacity: 1;
+    color: white;
+    background: #00BCD4;
+
+    padding: .5rem;
+    min-width: 3rem;
+    text-align: center;
+    border-radius: 5px;
+
+    transition: opacity 2s;
+    transition-duration: 2s;
+    opacity: 0;
+
+    &.active {
+      transition-duration: 0s;
+      opacity: 1;
+    }
   }
 }
+
+
+
+

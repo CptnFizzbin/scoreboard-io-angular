@@ -27,3 +27,9 @@ $theme: md-light-theme($primary, $accent, $warn);
 html {
   background-color: #f9f9f9;
 }
+
+.badge {
+  display: inline-block;
+  padding: .5rem;
+  border-radius: 5px;
+}

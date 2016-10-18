@@ -27,7 +27,12 @@ export class AppComponent implements OnInit {
   public get scores () {
     return this.players
       .map(player => player.score)
-      .sort()
+      .filter((e, i, arr) => arr.indexOf(e, i + 1) === -1) //Get unique values
+      .sort((a, b) => a - b)
       .reverse();
+  }
+
+  public getPlayerPlacement(player) {
+    return this.scores.indexOf(player.score) + 1;
   }
 }
