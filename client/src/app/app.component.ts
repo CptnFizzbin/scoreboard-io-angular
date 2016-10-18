@@ -20,6 +20,10 @@ export class AppComponent implements OnInit {
       .subscribe(players => this.players = players);
   }
 
+  public clearScores() {
+    this.players.forEach(player => player.score = 0)
+  }
+
   protected addPlayer(newPlayer:Player) {
     this.players.push(newPlayer);
   }

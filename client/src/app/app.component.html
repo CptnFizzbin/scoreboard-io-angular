@@ -1,3 +1,5 @@
+<button md-button (click)="clearScores()">New Game</button>
+
 <div class="player-list">
   <div *ngFor="let player of players" class="list-item">
     <sbio-player-score [player]="player" [placement]="getPlayerPlacement(player)"></sbio-player-score>
