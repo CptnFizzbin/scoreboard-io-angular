@@ -1,6 +1,6 @@
 <md-card class="player-score">
   <md-card-title-group>
-    <md-card-title>{{player.name}}</md-card-title>
+    <md-card-title>{{player.name}} - {{placement + 1}}</md-card-title>
     <div class="round-score" [ngClass]="{'active': relScoreActive }">
       {{roundScoreString}}
     </div>

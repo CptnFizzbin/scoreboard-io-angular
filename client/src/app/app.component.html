@@ -1,6 +1,6 @@
 <div class="player-list">
   <div *ngFor="let player of players" class="list-item">
-    <sbio-player-score [player]="player"></sbio-player-score>
+    <sbio-player-score [player]="player" [placement]="scores.indexOf(player.score)"></sbio-player-score>
   </div>
 </div>
 <div class="container">

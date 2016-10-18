@@ -23,4 +23,11 @@ export class AppComponent implements OnInit {
   protected addPlayer(newPlayer:Player) {
     this.players.push(newPlayer);
   }
+
+  public get scores () {
+    return this.players
+      .map(player => player.score)
+      .sort()
+      .reverse();
+  }
 }

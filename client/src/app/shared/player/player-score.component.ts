@@ -15,6 +15,8 @@ const ROUND_SCORE_FADE_TIME = 2000;
 export class PlayerScoreComponent {
   @Input()
   public player: Player;
+  @Input()
+  public placement: number;
 
   relScoreActive: Boolean = false;
   scoreSteam: Subject<number>;
