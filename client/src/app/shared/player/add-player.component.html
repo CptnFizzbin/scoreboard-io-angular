@@ -1,8 +1,10 @@
-<form (submit)="addPlayer()">
-  <div class="add-player">
-    <md-card-content>
+<md-card>
+  <md-card-content>
+    <form (submit)="addPlayer()" id="add-player-form">
       <md-input name='player.name' placeholder="Name" [(ngModel)]="newPlayer.name"></md-input>
-      <button md-button type="submit">Add</button>
-    </md-card-content>
-  </div>
-</form>
+    </form>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button type="submit" form="add-player-form">Add Player</button>
+  </md-card-actions>
+</md-card>
