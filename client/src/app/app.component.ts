@@ -76,19 +76,21 @@ export class AppComponent implements OnInit {
   }
 
   private mergePlayers(newPlayers:Player[]) {
-    var players = [];
+    var players = [...this.players];
 
     newPlayers.forEach(newPlayer => {
       var playerFound = false;
 
-      this.players.forEach(existingPlayer => {
+      players.forEach(existingPlayer => {
         if (newPlayer.name === existingPlayer.name) {
           newPlayer.score = existingPlayer.score;
           playerFound = true;
         }
       });
 
-      players.push(newPlayer);
+      if (!playerFound) {
+        players.push(newPlayer);
+      }
     });
 
     this.players = players;
