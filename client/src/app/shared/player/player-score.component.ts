@@ -17,6 +17,8 @@ export class PlayerScoreComponent {
   public player: Player;
   @Input()
   public placement: number;
+  @Output()
+  public scoreChanged: EventEmitter<Player>;
 
   relScoreActive: Boolean = false;
   scoreSteam: Subject<number>;
@@ -24,6 +26,8 @@ export class PlayerScoreComponent {
 
   constructor () {
     this.scoreSteam = new Subject<number>();
+    this.scoreChanged = new EventEmitter<Player>();
+
     this.subscribeScoreSteam();
   }
 
@@ -33,6 +37,7 @@ export class PlayerScoreComponent {
         this.relScoreActive = true;
         this.player.score += relScore;
         this.roundScore += relScore;
+        this.scoreChanged.emit(this.player);
       });
 
     this.scoreSteam
