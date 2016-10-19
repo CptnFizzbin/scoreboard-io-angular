@@ -1,8 +1,9 @@
-<button md-button (click)="clearScores()">New Game</button>
+<button md-button (click)="clearScores()">Rematch</button>
+<button md-button (click)="newGame()">New Game</button>
 
 <div class="player-list">
   <div *ngFor="let player of players" class="list-item">
-    <sbio-player-score [player]="player" [placement]="getPlayerPlacement(player)"></sbio-player-score>
+    <sbio-player-score [player]="player" [placement]="getPlayerPlacement(player)" (scoreChanged)="scoreChanged($event)"></sbio-player-score>
   </div>
   <div class="list-item">
     <sbio-add-player (onAddUser)="addPlayer($event)"></sbio-add-player>
