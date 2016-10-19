@@ -28,6 +28,26 @@ html {
   background-color: #f9f9f9;
 }
 
+body {
+  margin: 0;
+}
+
+main {
+  display: inline-block;
+  width: 100vw;
+  padding: 1rem;
+  height: calc(100vh - 50px)
+}
+
+footer {
+  display: inline-block;
+  width: 100vw;
+  height: 50px;
+  padding: 20px;
+  text-align: right;
+  color: grey;
+}
+
 .badge {
   display: inline-block;
   padding: .5rem;
