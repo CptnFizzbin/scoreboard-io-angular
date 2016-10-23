@@ -28,6 +28,17 @@ export class GameSummeryComponent {
       .join(', ')
   }
 
+  public getScoreForPlacement(placement:number):number|null {
+    var placementPlayerScore = this.placements.find(ps => ps.placement === placement )
+
+    if(placementPlayerScore) {
+      return placementPlayerScore.score;
+    }
+    else {
+      return null
+    }
+  }
+
   public getPlayer(playerId):Player {
     return this.players.find(p => p.id === playerId);
   }
