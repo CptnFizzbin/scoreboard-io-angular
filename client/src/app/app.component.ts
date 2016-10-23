@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
       });
   }
 
-  public getPlayerPlacement(player) {
+  public getPlayerScore(player) {
     return this.playerPlacements
       .find(ps => ps.playerId === player.id);
   }

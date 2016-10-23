@@ -7,7 +7,7 @@
 
 <div class="player-list">
   <div *ngFor="let player of players | async" class="list-item">
-    <sbio-player-score [player]="player" [placement]="getPlayerPlacement(player)"></sbio-player-score>
+    <sbio-player-score [player]="player" [playerScore]="getPlayerScore(player)"></sbio-player-score>
   </div>
   <div class="list-item">
     <sbio-add-player></sbio-add-player>

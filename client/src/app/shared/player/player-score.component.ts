@@ -17,7 +17,7 @@ export class PlayerScoreComponent {
   @Input()
   public player: Player;
   @Input()
-  public placement: PlayerScore;
+  public playerScore: PlayerScore;
 
   relScoreActive: Boolean = false;
   score$: Subject<number>;
@@ -70,7 +70,7 @@ export class PlayerScoreComponent {
   }
 
   public get placementString() {
-    return this.getOrdinalValue(this.placement.placement);
+    return this.getOrdinalValue(this.playerScore.placement);
   }
 
   private getOrdinalValue(value) {
