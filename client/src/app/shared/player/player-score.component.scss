@@ -23,18 +23,6 @@
     font-size: 2em;
   }
 
-  .placement {
-    vertical-align: middle;
-    text-align: center;
-    min-width: 3rem;
-    margin-right: 5px;
-    background-color: #efefef;
-
-    &.placement-1 { background-color: darkgoldenrod; }
-    &.placement-2 { background-color: silver; }
-    &.placement-3 { background-color: saddlebrown; color: white }
-  }
-
   .round-score {
     position: absolute;
     top: 24px;

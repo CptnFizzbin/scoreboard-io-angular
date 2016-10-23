@@ -1,5 +1,9 @@
-<button md-button (click)="clearScores()">Rematch</button>
-<button md-button (click)="newGame()">New Game</button>
+<sbio-game-summery [placements]="playerPlacements" [players]="players | async"></sbio-game-summery>
+
+<div class="space-below">
+  <button md-button (click)="clearScores()">Rematch</button>
+  <button md-button (click)="newGame()">New Game</button>
+</div >
 
 <div class="player-list">
   <div *ngFor="let player of players | async" class="list-item">

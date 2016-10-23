@@ -3,6 +3,7 @@ import {Subject} from "rxjs";
 
 import {Player} from "./player";
 import {PlayerService} from "./player.service";
+import {PlayerScore} from "./player-score";
 
 const ROUND_TIME = 2000;
 const ROUND_SCORE_FADE_TIME = 2000;
@@ -16,9 +17,7 @@ export class PlayerScoreComponent {
   @Input()
   public player: Player;
   @Input()
-  public placement: number;
-  @Output()
-  public scoreChanged: EventEmitter<Player>;
+  public placement: PlayerScore;
 
   relScoreActive: Boolean = false;
   score$: Subject<number>;
@@ -71,7 +70,7 @@ export class PlayerScoreComponent {
   }
 
   public get placementString() {
-    return this.getOrdinalValue(this.placement);
+    return this.getOrdinalValue(this.placement.placement);
   }
 
   private getOrdinalValue(value) {

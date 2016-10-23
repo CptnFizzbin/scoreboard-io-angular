@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {Player, PlayerService} from "./shared/index";
 import {Observable} from "rxjs";
+import {PlayerScore} from "./shared/player/player-score";
 
 @Component({
   selector: 'app-root',
@@ -11,18 +12,15 @@ import {Observable} from "rxjs";
 })
 export class AppComponent implements OnInit {
 
-  private _players: Observable<Player[]>;
-  public get players() {
-    return this._players
-  }
-
-  public playerPlacements: Map<number, number>;
+  public players: Observable<Player[]>;
+  public playerPlacements: PlayerScore[];
 
   constructor(private playerService:PlayerService) {
-    this._players = playerService.players$;
-    this.playerPlacements = new Map<number, number>();
-
+    this.players = this.playerService.players$;
     this.players.subscribe(players => this.playersChanged(players));
+
+    this.playerPlacements = [];
+
   }
 
   ngOnInit() {
@@ -42,14 +40,20 @@ export class AppComponent implements OnInit {
     var scores = [...players]
       .map(player => player.score)
       .filter((v, i, a) => a.indexOf(v) === i) //select unique
-      .sort((a,b) => b - a);
+      .sort((a, b) => b - a);
 
-    players.forEach(player => {
-      this.playerPlacements[player.id] = scores.indexOf(player.score) + 1;
-    })
+    this.playerPlacements = [...players]
+      .map(player => {
+        return {
+          playerId: player.id,
+          score: player.score,
+          placement: scores.indexOf(player.score) + 1
+        };
+      });
   }
 
   public getPlayerPlacement(player) {
-    return this.playerPlacements[player.id];
+    return this.playerPlacements
+      .find(ps => ps.playerId === player.id);
   }
 }

@@ -5,21 +5,24 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
 import {AppComponent} from './app.component';
-import {PlayerScoreComponent, AddPlayerComponent} from './shared/index';
+import {PlayerScoreComponent, AddPlayerComponent, GameSummeryComponent} from './shared/index';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerScoreComponent,
-    AddPlayerComponent
+    AddPlayerComponent,
+    GameSummeryComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+  ]
 })
 export class AppModule { }

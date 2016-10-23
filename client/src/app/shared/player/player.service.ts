@@ -13,7 +13,7 @@ import {Subject} from "rxjs";
 export class PlayerService {
 
   private playerStore:Player[] = [];
-  private maxPlayerId: number;
+  private maxPlayerId: number = 0;
 
   public players$: Subject<Player[]>;
 
