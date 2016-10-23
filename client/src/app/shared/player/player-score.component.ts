@@ -1,8 +1,8 @@
-import {Component, Input, OnInit, EventEmitter} from "@angular/core";
+import {Component, Input, OnInit, EventEmitter, Output} from "@angular/core";
 import {Subject} from "rxjs";
 
 import {Player} from "./player";
-import {Output} from "@angular/core/src/metadata/directives";
+import {PlayerService} from "./player.service";
 
 const ROUND_TIME = 2000;
 const ROUND_SCORE_FADE_TIME = 2000;
@@ -21,40 +21,44 @@ export class PlayerScoreComponent {
   public scoreChanged: EventEmitter<Player>;
 
   relScoreActive: Boolean = false;
-  scoreSteam: Subject<number>;
+  score$: Subject<number>;
   roundScore: number = 0;
 
-  constructor () {
-    this.scoreSteam = new Subject<number>();
-    this.scoreChanged = new EventEmitter<Player>();
+  constructor (private playerService:PlayerService) {
+    this.score$ = new Subject<number>();
 
-    this.subscribeScoreSteam();
+    this.subscribeToScoreSteam();
   }
 
-  private subscribeScoreSteam () {
-    this.scoreSteam
+  private subscribeToScoreSteam () {
+    //Things to do immediately when a score is updated.
+    this.score$
       .subscribe((relScore) => {
         this.relScoreActive = true;
-        this.player.score += relScore;
+
+        var newScore = this.player.score + relScore;
+        this.playerService.setScore(this.player.id, newScore);
+
         this.roundScore += relScore;
-        this.scoreChanged.emit(this.player);
       });
 
-    this.scoreSteam
+    //Things to do when a round is starting to end.
+    this.score$
       .debounceTime(ROUND_TIME)
       .subscribe(() => this.relScoreActive = false);
 
-    this.scoreSteam
+    //Things to do when a round has ended.
+    this.score$
       .debounceTime(ROUND_TIME + ROUND_SCORE_FADE_TIME)
       .subscribe(() => this.roundScore = 0);
   }
 
   public addScore(amount: number) {
-    this.scoreSteam.next(amount);
+    this.score$.next(amount);
   }
 
   public removeScore(amount: number) {
-    this.scoreSteam.next(amount * -1);
+    this.score$.next(amount * -1);
   }
 
   public get roundScoreString () {

@@ -1,6 +1,7 @@
 .player-list {
   display: inline-block;
-  width: 100%;
+  width: calc(100% + 1rem);
+  margin: -.5rem;
 
   .list-item {
     display: inline-block;

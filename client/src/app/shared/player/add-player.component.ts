@@ -1,5 +1,6 @@
 import {Component, Output, EventEmitter} from "@angular/core";
 
+import {PlayerService} from "./player.service";
 import {Player} from "./player";
 
 @Component({
@@ -8,19 +9,17 @@ import {Player} from "./player";
   styleUrls: ['add-player.component.scss']
 })
 export class AddPlayerComponent {
-  @Output() onAddUser = new EventEmitter<Player>();
-
   newPlayer: Player;
 
-  constructor() {
+  constructor(private playerService:PlayerService) {
     this.clear();
   }
 
   protected addPlayer() {
     if (this.newPlayer.name.trim() != '') {
-      this.onAddUser.emit(this.newPlayer);
+      this.playerService.addPlayer(this.newPlayer);
+      this.clear();
     }
-    this.clear();
   }
 
   private clear() {

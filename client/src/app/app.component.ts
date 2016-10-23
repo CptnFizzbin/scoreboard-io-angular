@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Player, PlayerService} from "./shared/index";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -10,99 +11,45 @@ import {Player, PlayerService} from "./shared/index";
 })
 export class AppComponent implements OnInit {
 
-  _players:Player[];
+  private _players: Observable<Player[]>;
   public get players() {
     return this._players
   }
 
-  public set players(players: Player[]) {
-    this._players = players;
-    this.scoreChanged();
-  }
-
-  _scores:number[];
-  public set scores(value:number[]) {
-    this._scores = value;
-  }
-  public get scores() {
-    return this._scores;
-  }
+  public playerPlacements: Map<number, number>;
 
   constructor(private playerService:PlayerService) {
-    this._players = [];
-    this._scores = [];
+    this._players = playerService.players$;
+    this.playerPlacements = new Map<number, number>();
+
+    this.players.subscribe(players => this.playersChanged(players));
   }
 
   ngOnInit() {
-    this.loadData();
-
-    this.playerService
-      .get()
-      .subscribe(players => {
-        this.mergePlayers(players);
-        this.scoreChanged();
-      });
+    this.playerService.fetchAll();
   }
 
   public clearScores() {
-    this.players.forEach(player => player.score = 0);
-    this.scoreChanged();
+    this.playerService.clearScores();
   }
 
   public newGame() {
-    this.players = [];
-
-    this.playerService
-      .get()
-      .subscribe(players => this.players = players);
+    this.playerService.clearScores();
+    this.playerService.fetchAll(false);
   }
 
-  public scoreChanged() {
-    this.scores = this.players
+  public playersChanged(players:Player[]) {
+    var scores = [...players]
       .map(player => player.score)
-      .filter((e, i, arr) => arr.indexOf(e, i + 1) === -1) //Get unique values
-      .sort((a, b) => a - b)
-      .reverse();
+      .filter((v, i, a) => a.indexOf(v) === i) //select unique
+      .sort((a,b) => b - a);
 
-    this.saveData();
+    players.forEach(player => {
+      this.playerPlacements[player.id] = scores.indexOf(player.score) + 1;
+    })
   }
 
   public getPlayerPlacement(player) {
-    return this.scores.indexOf(player.score) + 1;
-  }
-
-  protected addPlayer(newPlayer: Player) {
-    this.players = [...this.players, newPlayer];
-  }
-
-  private mergePlayers(newPlayers:Player[]) {
-    var players = [...this.players];
-
-    newPlayers.forEach(newPlayer => {
-      var playerFound = false;
-
-      players.forEach(existingPlayer => {
-        if (newPlayer.name === existingPlayer.name) {
-          newPlayer.score = existingPlayer.score;
-          playerFound = true;
-        }
-      });
-
-      if (!playerFound) {
-        players.push(newPlayer);
-      }
-    });
-
-    this.players = players;
-  }
-
-  private saveData() {
-    console.log('saved...');
-    localStorage.setItem('sbio.players', JSON.stringify(this.players));
-  }
-
-  private loadData() {
-    console.log('load...');
-    this.players = JSON.parse(localStorage.getItem('sbio.players')) || [];
+    return this.playerPlacements[player.id];
   }
 }
