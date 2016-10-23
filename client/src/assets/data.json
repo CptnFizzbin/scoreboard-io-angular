@@ -1,12 +1,12 @@
 {
   "players": [
-    { "name": "Stephen" },
-    { "name": "Eve" },
-    { "name": "Wilson" },
-    { "name": "Susan" },
-    { "name": "Rob" },
-    { "name": "Julia" },
-    { "name": "Jen" },
-    { "name": "Daniel" }
+    { "id": 0, "name": "Stephen" },
+    { "id": 1, "name": "Eve" },
+    { "id": 2, "name": "Wilson" },
+    { "id": 3, "name": "Susan" },
+    { "id": 4, "name": "Rob" },
+    { "id": 5, "name": "Julia" },
+    { "id": 6, "name": "Jen" },
+    { "id": 7, "name": "Daniel" }
   ]
 }
