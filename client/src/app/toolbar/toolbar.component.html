@@ -1,0 +1,13 @@
+<md-toolbar color="primary">
+  <button md-icon-button [md-menu-trigger-for]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  &nbsp;
+  <span>Scoreboard.io</span>
+
+</md-toolbar>
+
+<md-menu #menu="mdMenu">
+  <button md-menu-item (click)="clearScores()">Rematch</button>
+  <button md-menu-item (click)="newGame()">New Game</button>
+</md-menu>

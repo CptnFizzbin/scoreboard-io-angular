@@ -6,10 +6,12 @@ import { MaterialModule } from '@angular/material';
 
 import {AppComponent} from './app.component';
 import {PlayerScoreComponent, AddPlayerComponent, GameSummeryComponent} from './shared/index';
+import {ToolbarComponent} from "./toolbar/toolbar.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    ToolbarComponent,
     PlayerScoreComponent,
     AddPlayerComponent,
     GameSummeryComponent,

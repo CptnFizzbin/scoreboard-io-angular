@@ -18,8 +18,12 @@ export class PlayerService {
   public players$: Subject<Player[]>;
 
   constructor(private http: Http) {
+    console.log('new Player Service Created');
     this.players$ = new Subject<Player[]>();
-    this.players$.subscribe(players => this.onPlayersChange(players));
+    this.players$.subscribe(players => {
+      console.log('service', players);
+      this.onPlayersChange(players)
+    });
     this.players$.next(JSON.parse(localStorage.getItem('sbio.players')) || []);
   }
 
@@ -38,6 +42,7 @@ export class PlayerService {
   }
 
   public clearScores():void {
+    console.log('clearing scores...');
     var players = [...this.playerStore];
 
     players.map((player: Player) => {
@@ -45,21 +50,22 @@ export class PlayerService {
       return player;
     });
 
-    this.players$.next(players)
+    this.players$.next(players);
   }
 
   public setScore(playerId:number, newScore:number):void {
+    console.log('setting score...');
     var players = [...this.playerStore];
 
     players.map((player:Player) => {
-        if (player.id === playerId) {
-          player.score = newScore;
-        }
+      if (player.id === playerId) {
+        player.score = newScore;
+      }
 
-        return player;
-      });
+      return player;
+    });
 
-    this.players$.next(players)
+    this.players$.next(players);
   }
 
   public addPlayer(player) {

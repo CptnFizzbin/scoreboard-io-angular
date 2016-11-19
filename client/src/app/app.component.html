@@ -1,15 +1,14 @@
-<sbio-game-summery [placements]="playerPlacements" [players]="players | async"></sbio-game-summery>
+<sbio-toolbar></sbio-toolbar>
 
-<div class="space-below">
-  <button md-button (click)="clearScores()">Rematch</button>
-  <button md-button (click)="newGame()">New Game</button>
-</div >
+<main>
+  <sbio-game-summery [placements]="playerPlacements" [players]="players | async"></sbio-game-summery>
 
-<div class="player-list">
-  <div *ngFor="let player of players | async" class="list-item">
-    <sbio-player-score [player]="player" [playerScore]="getPlayerScore(player)"></sbio-player-score>
+  <div class="player-list">
+    <div *ngFor="let player of players | async" class="list-item">
+      <sbio-player-score [player]="player" [playerScore]="getPlayerScore(player)"></sbio-player-score>
+    </div>
+    <div class="list-item">
+      <sbio-add-player></sbio-add-player>
+    </div>
   </div>
-  <div class="list-item">
-    <sbio-add-player></sbio-add-player>
-  </div>
-</div>
+</main>

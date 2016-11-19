@@ -17,10 +17,12 @@ export class AppComponent implements OnInit {
 
   constructor(private playerService:PlayerService) {
     this.players = this.playerService.players$;
-    this.players.subscribe(players => this.playersChanged(players));
+    this.players.subscribe(players => {
+      console.log('app', players);
+      this.playersChanged(players);
+    });
 
     this.playerPlacements = [];
-
   }
 
   ngOnInit() {
