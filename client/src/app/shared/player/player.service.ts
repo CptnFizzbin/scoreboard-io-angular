@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/observable/throw';
 import {Player} from "./player";
-import {Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 /**
  * This class provides the NameList service with methods to read names and add names.
@@ -15,16 +15,19 @@ export class PlayerService {
   private playerStore:Player[] = [];
   private maxPlayerId: number = 0;
 
-  public players$: Subject<Player[]>;
+  public players$: BehaviorSubject<Player[]>;
 
   constructor(private http: Http) {
-    console.log('new Player Service Created');
-    this.players$ = new Subject<Player[]>();
+    this.players$ = new BehaviorSubject<Player[]>([]);
+
+    var savedPlayerData = JSON.parse(localStorage.getItem('sbio.players'));
+    if (savedPlayerData !== null) {
+      this.players$.next(savedPlayerData);
+    }
+
     this.players$.subscribe(players => {
-      console.log('service', players);
       this.onPlayersChange(players)
     });
-    this.players$.next(JSON.parse(localStorage.getItem('sbio.players')) || []);
   }
 
   public fetchAll(keepExtraPlayers:boolean = true):void {
@@ -41,8 +44,16 @@ export class PlayerService {
       });
   }
 
+  public getPlayers():Observable<Player[]> {
+    return this.players$;
+  }
+
+  public getPlayer(playerId:number):Observable<Player> {
+    return this.players$
+      .map((players:Player[]) => players.find(p => p.id === playerId))
+  }
+
   public clearScores():void {
-    console.log('clearing scores...');
     var players = [...this.playerStore];
 
     players.map((player: Player) => {
@@ -54,7 +65,6 @@ export class PlayerService {
   }
 
   public setScore(playerId:number, newScore:number):void {
-    console.log('setting score...');
     var players = [...this.playerStore];
 
     players.map((player:Player) => {
