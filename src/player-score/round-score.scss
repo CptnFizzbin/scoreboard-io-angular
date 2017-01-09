@@ -1,0 +1,15 @@
+.sbio-round-score {
+  background: lightblue;
+  padding: 10px;
+  width: 32px;
+  text-align: center;
+  border-radius: 5px;
+
+  opacity: 0;
+  transition: opacity 2s;
+
+  &.active {
+    opacity: 1;
+    transition: opacity 0s;
+  }
+}

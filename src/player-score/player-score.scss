@@ -1,0 +1,30 @@
+.sbio-player-score {
+  position: relative;
+  clear: both;
+  padding: 15px;
+
+  display: flex;
+  align-items: center;
+
+  .player-name {
+    display: inline-block;
+    font-size: 1.5rem;
+
+    flex-grow: 2;
+  }
+
+  .score {
+
+  }
+
+  .score-value {
+    position: relative;
+    top: -6px;
+
+    width: 28px;
+
+    display: inline-block;
+
+    text-align: center;
+  }
+}
