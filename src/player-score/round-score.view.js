@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 
 import './round-score.scss';
 
@@ -9,8 +10,16 @@ const propTypes = {
 
 class SbioRoundScoreView extends Component {
   render() {
+    let classes = classNames(
+      'sbio-round-score',
+      {
+        active: this.props.active,
+        ending: this.props.ending
+      }
+    );
+
     return (
-      <div className={'sbio-round-score ' + (this.props.active ? 'active' : '') }>
+      <div className={classes}>
         {this.props.score > 0 ? '+' + this.props.score : this.props.score}
       </div>
     )

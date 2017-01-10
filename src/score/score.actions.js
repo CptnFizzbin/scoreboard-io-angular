@@ -1,23 +1,21 @@
-export const RESET_SCORES = 'scores.resetScores';
-export const INCREMENT_PLAYER_SCORE = 'scores.incrementPlayerScore';
-export const DECREMENT_PLAYER_SCORE = 'scores.decrementPlayerScore';
+import {
+  SET_SCORE_REL,
+} from "../app.actions";
 
-export function resetScores() {
+export function setScoreRel(playerId, relScore) {
   return {
-    type: RESET_SCORES
+    type: SET_SCORE_REL,
+    payload: {
+      playerId,
+      relScore
+    }
   };
 }
 
 export function incrementPlayerScore(playerId) {
-  return {
-    type: INCREMENT_PLAYER_SCORE,
-    payload: {playerId}
-  };
+  return setScoreRel(playerId, 1);
 }
 
 export function decrementPlayerScore(playerId) {
-  return {
-    type: DECREMENT_PLAYER_SCORE,
-    payload: {playerId}
-  };
+  return setScoreRel(playerId, -1);
 }

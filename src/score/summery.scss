@@ -1,0 +1,78 @@
+.sbio-summery {
+  padding: 15px;
+
+  .sbio-placement {
+    display: flex;
+    align-items: center;
+
+    height: 40px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    .rank {
+      min-width: 100px;
+    }
+
+    .rank-value::before {
+      position: relative;
+      z-index: 10;
+
+      display: inline-block;
+      padding: 5px;
+      border-radius: 5px;
+
+      width: 40px;
+      height: 1.2rem;
+
+      text-align: center;
+    }
+
+    .rank-1::before {
+      content: '1st';
+      background: darkgoldenrod;
+    }
+
+    .rank-2::before {
+      content: '2nd';
+      background: silver;
+    }
+
+    .rank-3::before {
+      content: '3rd';
+      background: saddlebrown;
+    }
+
+    .score {
+      position: relative;
+
+      display: inline-block;
+      padding: 5px 5px 5px 10px;
+      margin-left: -5px;
+      margin-right: 5px;
+
+      background: rgb(224, 224, 224);
+
+      width: 30px;
+      height: 1.2rem;
+      text-align: center;
+
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+
+      font-weight: bold;
+
+      z-index: 0;
+    }
+
+    .players {
+      display: inline-block;
+
+      flex-grow: 2;
+    }
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}

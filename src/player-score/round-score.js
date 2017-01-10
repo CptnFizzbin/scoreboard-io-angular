@@ -4,18 +4,22 @@ import {connect} from 'react-redux';
 import SbioRoundScoreView from './round-score.view';
 
 const ownPropsTypes = {
-  score: PropTypes.number.isRequired
+  playerId: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
-  return {
+  let playerScore = state.scores
+    .find(score => score.playerId === ownProps.playerId);
 
+  return {
+    active: state.round.roundActive && playerScore.scoreChanged,
+    ending: state.round.roundEnding && playerScore.scoreChanged,
+    score: playerScore.roundScore
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-
   }
 };
 

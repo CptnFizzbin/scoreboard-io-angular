@@ -1,10 +1,8 @@
 .sbio-player-score {
-  position: relative;
-  clear: both;
-  padding: 15px;
-
   display: flex;
   align-items: center;
+
+  padding: 15px;
 
   .player-name {
     display: inline-block;
@@ -14,17 +12,17 @@
   }
 
   .score {
+    display: flex;
+    align-items: center;
 
+    width: 40 + (48*2)px;
   }
 
   .score-value {
-    position: relative;
-    top: -6px;
-
-    width: 28px;
-
     display: inline-block;
+    width: 40px;
 
+    font-size: 1.5rem;
     text-align: center;
   }
 }

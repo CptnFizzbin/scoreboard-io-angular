@@ -1,9 +1,9 @@
 import {connect} from "react-redux";
 
-import {resetScores} from '../score/score.actions';
+import {newGame, rematch} from "../app.actions";
+import {createPlayer} from "../player/player.actions";
+
 import SbioAppbarMenuView from './appbar-menu.view';
-import {newGame} from "../app.actions";
-import {addPlayer} from "../player/players.actions";
 
 const ownPropsTypes = {
 };
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onRematch: function () {
-      dispatch(resetScores());
+      dispatch(rematch());
     },
     onNewGame: function () {
       console.log('New Game');
@@ -24,9 +24,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(newGame());
 
       let appData = require('../app-data.json');
-
       appData.players.forEach((player) => {
-        dispatch(addPlayer(player));
+        dispatch(createPlayer(player));
       });
     }
   }
