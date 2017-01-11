@@ -1,7 +1,7 @@
 import {PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-import SbioRoundScoreView from './round-score.view';
+import PreviousRoundScoresView from './previous-round-scores.view';
 
 const ownPropsTypes = {
   playerId: PropTypes.number.isRequired
@@ -12,9 +12,7 @@ const mapStateToProps = (state, ownProps) => {
     .find(score => score.playerId === ownProps.playerId);
 
   return {
-    active: state.round.roundActive && playerScore.scoreChanged,
-    ending: state.round.roundEnding && playerScore.scoreChanged,
-    score: playerScore.roundScore
+    roundScores: playerScore.roundScores || []
   }
 };
 
@@ -23,11 +21,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-const SbioRoundScore = connect(
+const PreviousRoundScores = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SbioRoundScoreView);
+)(PreviousRoundScoresView);
 
-SbioRoundScore.propTypes = ownPropsTypes;
+PreviousRoundScores.propTypes = ownPropsTypes;
 
-export default SbioRoundScore;
+export default PreviousRoundScores;

@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 
-import './round-score.scss';
+import './active-round-score.scss';
 
 const propTypes = {
   score: PropTypes.number.isRequired,
   active: PropTypes.bool.isRequired
 };
 
-class SbioRoundScoreView extends Component {
+class ActiveRoundScoreView extends Component {
   render() {
     let classes = classNames(
-      'sbio-round-score',
+      'active-round-score',
       {
         active: this.props.active,
         ending: this.props.ending
@@ -26,6 +26,6 @@ class SbioRoundScoreView extends Component {
   }
 }
 
-SbioRoundScoreView.propTypes = propTypes;
+ActiveRoundScoreView.propTypes = propTypes;
 
-export default SbioRoundScoreView;
+export default ActiveRoundScoreView;

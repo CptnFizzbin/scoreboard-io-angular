@@ -21,6 +21,7 @@ export default function scores(state = initialState, action) {
             value: 0,
             roundScore: 0,
             scoreChanged: false,
+            roundScores: [],
           }
         });
     case ROUND_ENDED:
@@ -28,8 +29,16 @@ export default function scores(state = initialState, action) {
         .map((score) => {
           return {
             ...score,
+            value: score.roundScores
+              .reduce((sum, score) => {
+                return sum + score
+              }, score.roundScore),
             roundScore: 0,
             scoreChanged: false,
+            roundScores: [
+              score.roundScore,
+              ...score.roundScores
+            ],
           }
         });
     case ADD_PLAYER:
@@ -41,6 +50,7 @@ export default function scores(state = initialState, action) {
           value: 0,
           roundScore: 0,
           scoreChanged: false,
+          roundScores: [],
         }
       ];
     case SET_SCORE_REL:

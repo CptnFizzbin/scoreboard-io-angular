@@ -1,0 +1,23 @@
+.prev-round-scores {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+
+  overflow-x: scroll;
+
+  margin: 0 15px 15px;
+  height: 20px;
+
+  .round-score {
+    display: inline-block;
+
+    font-size: 0.75rem;
+    width: 25px;
+    text-align: center;
+    padding: 3px;
+    border-radius: 5px;
+    margin: 0 3px;
+
+    background: #e0e0e0;
+  }
+}

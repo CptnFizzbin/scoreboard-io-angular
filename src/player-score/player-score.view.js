@@ -3,7 +3,8 @@ import IconButton from 'material-ui/IconButton';
 import AddCircleOutlineIcon from 'material-ui/svg-icons/content/add-circle-outline';
 import RemoveCircleOutlineIcon from 'material-ui/svg-icons/content/remove-circle-outline';
 
-import SbioRoundScore from './round-score';
+import SbioRoundScore from './active-round-score';
+import PreviousRoundScores from '../round/previous-round-scores';
 
 import './player-score.scss';
 
@@ -22,19 +23,22 @@ class SbioPlayerScoreView extends Component {
   render() {
     return (
       <div className="sbio-player-score">
-        <span className="player-name">{this.props.player.name}</span>
-        <span className="round-score">
-          <SbioRoundScore playerId={this.props.player.id}/>
-        </span>
-        <span className="score">
-          <IconButton onClick={this.props.onScoreMinus}>
-            <RemoveCircleOutlineIcon />
-          </IconButton>
-          <span className="score-value">{this.props.score.value}</span>
-          <IconButton onClick={this.props.onScorePlus}>
-            <AddCircleOutlineIcon />
-          </IconButton>
-        </span>
+        <div className="player-info">
+          <span className="player-name">{this.props.player.name}</span>
+          <span className="round-score">
+            <SbioRoundScore playerId={this.props.player.id}/>
+          </span>
+          <span className="score">
+            <IconButton onTouchTap={this.props.onScoreMinus} disableTouchRipple={true}>
+              <RemoveCircleOutlineIcon />
+            </IconButton>
+            <span className="score-value">{this.props.score.value}</span>
+            <IconButton onTouchTap={this.props.onScorePlus} disableTouchRipple={true}>
+              <AddCircleOutlineIcon />
+            </IconButton>
+          </span>
+        </div>
+        <PreviousRoundScores playerId={this.props.player.id} />
       </div>
     );
   }
