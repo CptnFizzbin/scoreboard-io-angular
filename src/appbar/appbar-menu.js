@@ -3,21 +3,20 @@ import {connect} from "react-redux";
 import {newGame, rematch} from "../app.actions";
 import {createPlayer} from "../player/player.actions";
 
-import SbioAppbarMenuView from './appbar-menu.view';
+import AppbarMenuView from './appbar-menu.view';
 
-const ownPropsTypes = {
+const ownPropsTypes = {};
+
+const mapStateToProps = () => {
+  return {}
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-  }
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onRematch: function () {
       dispatch(rematch());
     },
+
     onNewGame: function () {
       console.log('New Game');
 
@@ -31,11 +30,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-const SbioAppbarMenu = connect(
+const AppbarMenu = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SbioAppbarMenuView);
+)(AppbarMenuView);
 
-SbioAppbarMenu.propTypes = ownPropsTypes;
+AppbarMenu.propTypes = ownPropsTypes;
 
-export default SbioAppbarMenu;
+export default AppbarMenu;

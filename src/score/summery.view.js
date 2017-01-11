@@ -5,7 +5,10 @@ import PlacementView from './placement.view';
 
 import './summery.scss';
 
-const SummeryView = ({placements, round}) => (
+const SummeryView = ({
+  placements,
+  round,
+}) => (
   <Paper className="sbio-summery">
     <span className="title">Game Summery</span>{/* - Round {round}</span> */}
     {

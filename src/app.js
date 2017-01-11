@@ -24,7 +24,6 @@ import './app.scss';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-
 //============================
 // Configure Redux Middleware
 const epicMiddleware = createEpicMiddleware(epics);

@@ -12,15 +12,14 @@ const mapStateToProps = (state, ownProps) => {
     .find(score => score.playerId === ownProps.playerId);
 
   return {
-    active: state.round.roundActive && playerScore.scoreChanged,
-    ending: state.round.roundEnding && playerScore.scoreChanged,
+    active: playerScore.scoreChanged && state.round.roundActive,
+    ending: playerScore.scoreChanged && state.round.roundEnding,
     score: playerScore.roundScore
   }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-  }
+const mapDispatchToProps = () => {
+  return {}
 };
 
 const ActiveRoundScore = connect(

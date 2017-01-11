@@ -12,9 +12,9 @@ const mapDispatchToProps = () => {
   return {}
 };
 
-const SbioPlayerScoresList = connect(
+const PlayerScoresList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SbioPlayerScoresListView);
 
-export default SbioPlayerScoresList;
+export default PlayerScoresList;

@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import IconButton from 'material-ui/IconButton';
 import AddCircleOutlineIcon from 'material-ui/svg-icons/content/add-circle-outline';
 import RemoveCircleOutlineIcon from 'material-ui/svg-icons/content/remove-circle-outline';
 
-import SbioRoundScore from './active-round-score';
+import RoundScore from './active-round-score';
 import PreviousRoundScores from '../round/previous-round-scores';
 
 import './player-score.scss';
@@ -16,35 +16,39 @@ const propTypes = {
   score: PropTypes.shape({
     id: PropTypes.number.isRequired,
     value: PropTypes.number.isRequired
-  }).isRequired
+  }).isRequired,
+
+  onScoreMinus: PropTypes.func.isRequired,
+  onScorePlus: PropTypes.func.isRequired
 };
 
-class SbioPlayerScoreView extends Component {
-  render() {
-    return (
-      <div className="sbio-player-score">
-        <div className="player-info">
-          <span className="player-name">{this.props.player.name}</span>
-          <span className="round-score">
-            <SbioRoundScore playerId={this.props.player.id}/>
-          </span>
-          <span className="score">
-            <IconButton onTouchTap={this.props.onScoreMinus} disableTouchRipple={true}>
-              <RemoveCircleOutlineIcon />
-            </IconButton>
-            <span className="score-value">{this.props.score.value}</span>
-            <IconButton onTouchTap={this.props.onScorePlus} disableTouchRipple={true}>
-              <AddCircleOutlineIcon />
-            </IconButton>
-          </span>
-        </div>
-        <PreviousRoundScores playerId={this.props.player.id} />
-      </div>
-    );
-  }
-}
+const PlayerScoreView = ({
+  player,
+  score,
+  onScoreMinus,
+  onScorePlus,
+}) => (
+  <div className="sbio-player-score">
+    <div className="player-info">
+      <span className="player-name">{player.name}</span>
+      <span className="round-score">
+        <RoundScore playerId={player.id}/>
+      </span>
+      <span className="score">
+        <IconButton onTouchTap={onScoreMinus} disableTouchRipple={true}>
+          <RemoveCircleOutlineIcon />
+        </IconButton>
+        <span className="score-value">{score.value}</span>
+        <IconButton onTouchTap={onScorePlus} disableTouchRipple={true}>
+          <AddCircleOutlineIcon />
+        </IconButton>
+      </span>
+    </div>
+    <PreviousRoundScores playerId={player.id} />
+  </div>
+);
 
-SbioPlayerScoreView.propTypes = propTypes;
+PlayerScoreView.propTypes = propTypes;
 
-export default SbioPlayerScoreView;
+export default PlayerScoreView;
 

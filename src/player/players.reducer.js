@@ -3,8 +3,7 @@ import {
   CREATE_PLAYER
 } from "../app.actions";
 
-let initialState = [
-];
+let initialState = [];
 
 export default function players(state = initialState, action) {
   switch (action.type) {

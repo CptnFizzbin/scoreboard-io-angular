@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
 import Divider from 'material-ui/Divider';
 
-import SbioPlayerScore from './player-score';
+import PlayerScore from './player-score';
 
 const propTypes = {
   playerIds: PropTypes.arrayOf(
@@ -9,22 +9,24 @@ const propTypes = {
   ).isRequired
 };
 
-class SbioPlayerScoreListView extends React.Component {
-  render() {
-    return (
-      <div className="sbio-player-score-list">
-          {
-          [...this.props.playerIds]
-            .map(playerId => (<SbioPlayerScore key={'player-' + playerId} playerId={playerId} />))
-            .reduce((accu, elem, index) => {
-              return accu === null ? [elem] : [...accu, <Divider key={'divider-' + index} />, elem];
-            }, null)
-        }
-      </div>
-    );
-  }
+function joinWithDivider(accu, elem, index) {
+  return accu === null ?
+    [elem] :
+    [...accu, <Divider key={'divider-' + index}/>, elem];
 }
 
-SbioPlayerScoreListView.propTypes = propTypes;
+const PlayerScoreListView = ({
+  playerIds,
+}) => (
+  <div className="sbio-player-score-list">
+    {
+      [...playerIds]
+        .map(playerId => (<PlayerScore key={'player-' + playerId} playerId={playerId} />))
+        .reduce(joinWithDivider, null)
+    }
+  </div>
+);
 
-export default SbioPlayerScoreListView;
+PlayerScoreListView.propTypes = propTypes;
+
+export default PlayerScoreListView;

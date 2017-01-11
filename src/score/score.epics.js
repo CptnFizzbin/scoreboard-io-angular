@@ -14,7 +14,6 @@ import {
   SET_SCORE_REL,
 } from "../app.actions";
 import {
-  roundStarted,
   roundEnding,
   roundEnded,
 } from "../round/round.actions";

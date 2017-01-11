@@ -4,19 +4,26 @@ import SummeryView from './summery.view';
 
 const ownPropsTypes = {};
 
-const mapStateToProps = (state, ownProps) => {
-  let sortedScores = [...state.scores]
+function sortScores(scores) {
+  return [...scores]
     .map(scores => scores.value)
-    .sort((a, b) => { return b - a; })
+    .sort((a, b) => {
+      return b - a;
+    })
     .filter((v, i, a) => a.indexOf(v) === i);
+}
 
-  let playersById = [...state.players]
-    .reduce((players, player) => {
-      players[player.id] = player;
-
-      return players;
+function arrayToMap(items) {
+  return [...items]
+    .reduce((items, item) => {
+      items[item.id] = item;
+      return items;
     }, {});
+}
 
+const mapStateToProps = (state) => {
+  let sortedScores = sortScores(state.scores);
+  let playersById = arrayToMap(state.players);
   let placements = [];
 
   for (let rank = 1; rank <= 3; rank++) {
@@ -31,24 +38,21 @@ const mapStateToProps = (state, ownProps) => {
     })
   }
 
-  console.log(placements);
-
   return {
     round: state.round.roundNumber,
     placements: placements
   }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-  }
+const mapDispatchToProps = () => {
+  return {}
 };
 
-const SbioSummery = connect(
+const Summery = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SummeryView);
 
-SbioSummery.propTypes = ownPropsTypes;
+Summery.propTypes = ownPropsTypes;
 
-export default SbioSummery;
+export default Summery;

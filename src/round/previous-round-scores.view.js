@@ -1,8 +1,16 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 import './previous-round-scores.scss';
 
-const PreviousRoundScoresView = ({roundScores}) => {
+const propTypes = {
+  roundScores: PropTypes.arrayOf(
+    PropTypes.number.isRequired
+  ).isRequired
+};
+
+const PreviousRoundScoresView = ({
+  roundScores
+}) => {
   let scores = roundScores.map((score, index) => {
     return (
       <span key={index} className="round-score">
@@ -18,5 +26,7 @@ const PreviousRoundScoresView = ({roundScores}) => {
   )
 
 };
+
+PreviousRoundScoresView.propTypes = propTypes;
 
 export default PreviousRoundScoresView;

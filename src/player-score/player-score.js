@@ -1,7 +1,7 @@
 import {PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-import SbioPlayerScoreView from './player-score.view';
+import PlayerScoreView from './player-score.view';
 import {incrementPlayerScore, decrementPlayerScore} from '../score/score.actions';
 
 const ownPropsTypes = {
@@ -26,11 +26,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-const SbioPlayerScore = connect(
+const PlayerScore = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SbioPlayerScoreView);
+)(PlayerScoreView);
 
-SbioPlayerScore.propTypes = ownPropsTypes;
+PlayerScore.propTypes = ownPropsTypes;
 
-export default SbioPlayerScore;
+export default PlayerScore;

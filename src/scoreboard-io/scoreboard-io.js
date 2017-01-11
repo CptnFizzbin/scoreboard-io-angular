@@ -1,18 +1,14 @@
 import * as React from 'react';
-import SbioAppBarView from '../appbar/appbar.view';
-import SbioSummery from '../score/summery';
-import SbioPlayerScoresList from '../player-score/player-scores-list';
+import AppbarView from '../appbar/appbar.view';
+import Summery from '../score/summery';
+import PlayerScoresList from '../player-score/player-scores-list';
 
-class ScoreboardIO extends React.Component {
-  render() {
-    return (
-      <div className="sbio-scoreboard-io">
-        <SbioAppBarView />
-        <SbioSummery />
-        <SbioPlayerScoresList />
-      </div>
-    );
-  }
-}
+const ScoreboardIO = () => (
+  <div className="sbio-scoreboard-io">
+    <AppbarView />
+    <Summery />
+    <PlayerScoresList />
+  </div>
+);
 
 export default ScoreboardIO;

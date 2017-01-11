@@ -16,9 +16,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-  }
+const mapDispatchToProps = () => {
+  return {}
 };
 
 const PreviousRoundScores = connect(

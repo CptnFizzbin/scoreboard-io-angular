@@ -1,17 +1,13 @@
 import * as React from 'react';
-import AppBar from 'material-ui/AppBar';
+import MuiAppBar from 'material-ui/AppBar';
 
-import SbioAppbarMenu from './appbar-menu';
+import AppbarMenu from './appbar-menu';
 
-class SbioAppBarView extends React.Component {
-  render() {
-    return (
-      <AppBar
-        title="Scoreboard.io"
-        iconElementLeft={<SbioAppbarMenu />}
-      />
-    );
-  }
-}
+const AppbarView = () => (
+  <MuiAppBar
+    title="Scoreboard.io"
+    iconElementLeft={<AppbarMenu />}
+  />
+);
 
-export default SbioAppBarView;
+export default AppbarView;
