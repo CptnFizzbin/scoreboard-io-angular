@@ -1,6 +1,9 @@
-//IDES:
-WebStorm
+IDES:
+    WebStorm
 
-//Packages of note:
-React
-Redux
+Technologies:
+    React
+    Redux
+
+Author:
+    Stephen A. Wilson
