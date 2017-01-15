@@ -1,0 +1,6 @@
+//IDES:
+WebStorm
+
+//Packages of note:
+React
+Redux
