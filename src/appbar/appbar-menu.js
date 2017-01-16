@@ -18,8 +18,6 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     onNewGame: function () {
-      console.log('New Game');
-
       dispatch(newGame());
 
       let appData = require('../app-data.json');

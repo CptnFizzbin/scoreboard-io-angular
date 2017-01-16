@@ -3,6 +3,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
+import Divider from 'material-ui/Divider';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 const propTypes = {
@@ -15,6 +16,7 @@ const AppbarMenuView = muiThemeable()(
     muiTheme,
     onRematch,
     onNewGame,
+    onAbout,
   }) => (
     <IconMenu
       iconButtonElement={(
@@ -24,7 +26,9 @@ const AppbarMenuView = muiThemeable()(
       )}
     >
       <MenuItem primaryText="Rematch" onClick={onRematch} />
-      <MenuItem primaryText="New Game" onClick={onNewGame} />
+      <MenuItem primaryText="New Game" onClick={onNewGame}/>
+      <Divider />
+      <MenuItem primaryText="About" onClick={onAbout}/>
     </IconMenu>
   )
 );

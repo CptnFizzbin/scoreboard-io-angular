@@ -1,10 +1,10 @@
 import {connect} from 'react-redux';
 
-import SbioPlayerScoresListView from './player-scores-list.view';
+import PlayerScoresListView from './player-scores-list.view';
 
 const mapStateToProps = (state) => {
   return {
-    playerIds: state.scores.map(score => score.playerId)
+    playerIds: state.scores.map(score => score.playerId),
   }
 };
 
@@ -15,6 +15,6 @@ const mapDispatchToProps = () => {
 const PlayerScoresList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SbioPlayerScoresListView);
+)(PlayerScoresListView);
 
 export default PlayerScoresList;

@@ -1,13 +1,13 @@
 import * as React from 'react';
-import AppbarView from '../appbar/appbar.view';
-import Summery from '../score/summery';
-import PlayerScoresList from '../player-score/player-scores-list';
+import Appbar from '../appbar/appbar';
 
-const ScoreboardIO = () => (
+const ScoreboardIO = ({
+  children,
+  location,
+}) => (
   <div className="sbio-scoreboard-io">
-    <AppbarView />
-    <Summery />
-    <PlayerScoresList />
+    <Appbar curLocation={location} />
+    {children}
   </div>
 );
 

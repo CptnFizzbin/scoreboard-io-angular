@@ -1,7 +1,8 @@
 //react imports
-import React, {Component} from 'react';
+import React from 'react';
 import {Provider as StoreProvider} from 'react-redux'
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import {browserHistory} from "react-router";
 
 //redux imports
 import {createStore, applyMiddleware} from 'redux'
@@ -11,11 +12,12 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 
 //other vendor imports
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {syncHistoryWithStore, routerMiddleware} from 'react-router-redux';
 
 //application imports
 import reducers from './app.reducer';
-import epics from "./app.epics";
-import ScoreboardIO from './scoreboard-io/scoreboard-io';
+import epics from './app.epics';
+import Router from './app.router';
 
 //asset imports
 import './app.scss';
@@ -26,27 +28,27 @@ injectTapEventPlugin();
 
 //============================
 // Configure Redux Middleware
-const epicMiddleware = createEpicMiddleware(epics);
+const epicMware = createEpicMiddleware(epics);
+const routerMware = routerMiddleware(browserHistory);
 
 export let store = createStore(
   reducers,
   composeWithDevTools(
-    applyMiddleware(epicMiddleware)
+    applyMiddleware(epicMware),
+    applyMiddleware(routerMware)
   ),
   autoRehydrate()
 );
 persistStore(store);
 
-class App extends Component {
-  render() {
-    return (
-      <StoreProvider store={store}>
-        <MuiThemeProvider>
-          <ScoreboardIO/>
-        </MuiThemeProvider>
-      </StoreProvider>
-    );
-  }
-}
+const history = syncHistoryWithStore(browserHistory, store);
+
+const App = () => (
+  <StoreProvider store={store}>
+    <MuiThemeProvider>
+      <Router history={history} />
+    </MuiThemeProvider>
+  </StoreProvider>
+);
 
 export default App;
