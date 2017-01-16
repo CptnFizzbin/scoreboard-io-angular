@@ -9,6 +9,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 const propTypes = {
   onRematch: PropTypes.func.isRequired,
   onNewGame: PropTypes.func.isRequired,
+  onAbout: PropTypes.func.isRequired,
 };
 
 const AppbarMenuView = muiThemeable()(

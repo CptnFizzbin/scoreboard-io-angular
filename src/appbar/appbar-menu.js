@@ -1,7 +1,8 @@
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 
-import {newGame, rematch} from "../app.actions";
-import {createPlayer} from "../player/player.actions";
+import {newGame, rematch} from '../app.actions';
+import {createPlayer} from '../player/player.actions';
 
 import AppbarMenuView from './appbar-menu.view';
 
@@ -24,6 +25,10 @@ const mapDispatchToProps = (dispatch) => {
       appData.players.forEach((player) => {
         dispatch(createPlayer(player));
       });
+    },
+
+    onAbout: function () {
+      dispatch(push('/about'));
     }
   }
 };

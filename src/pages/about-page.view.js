@@ -9,7 +9,7 @@ const AboutPageView = ({
     <h1>Scoreboard-IO</h1>
     <dl>
       <dt>App Version:</dt>
-      <dd>v0.2.0</dd>
+      <dd>v0.2.1</dd>
 
       <dt>Git Repo:</dt>
       <dd>
