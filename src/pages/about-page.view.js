@@ -2,9 +2,7 @@ import React from 'react';
 
 import './about-page.scss';
 
-const AboutPageView = ({
-  onGoHome,
-}) => (
+const AboutPageView = () => (
   <div className="about-page">
     <h1>Scoreboard-IO</h1>
     <dl>
@@ -20,7 +18,7 @@ const AboutPageView = ({
 
       <dt>Developer:</dt>
       <dd>
-        Stephen A. Wilson import (SpyMaster356)
+        Stephen A. Wilson (SpyMaster356)
       </dd>
     </dl>
   </div>
