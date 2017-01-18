@@ -5,20 +5,20 @@
 
   overflow-x: auto;
 
-  margin: 0 15px 15px;
+  margin: 0 16px 16px;
 
   .round-score {
     display: inline-block;
 
-    min-width: 25px;
-    padding: 3px;
+    min-width: 24px;
+    padding: 4px;
 
-    margin: 0 3px 5px;
+    margin: 0px 4px;
 
-    border-radius: 5px;
+    border-radius: 4px;
     background: #e0e0e0;
 
-    font-size: 0.75rem;
+    font-size: 12px;
     text-align: center;
   }
 }
