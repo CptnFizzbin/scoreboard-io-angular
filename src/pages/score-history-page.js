@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import EditScoresPageView from './edit-scores-page.view';
+import ScoreHistoryPageView from './score-history-page.view';
 
 const propTypes = {};
 
@@ -12,11 +12,11 @@ const mapDispatchToProps = () => {
   return {};
 };
 
-const EditScoresPage = connect(
+const ScoreHistoryPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditScoresPageView);
+)(ScoreHistoryPageView);
 
-EditScoresPage.propTypes = propTypes;
+ScoreHistoryPage.propTypes = propTypes;
 
-export default EditScoresPage;
+export default ScoreHistoryPage;

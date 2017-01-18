@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
 
-    onEditScores: function () {
-      dispatch(push('/scores/edit'));
+    onScoreHistory: function () {
+      dispatch(push('/scores/history'));
     },
 
     onAbout: function () {
