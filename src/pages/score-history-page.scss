@@ -1,6 +1,24 @@
 .score-history-page {
-  .player-select-area {
-    padding: 0 24px 16px;
-    margin-bottom: 8px;
+  max-width: 500px;
+  margin: auto;
+
+  padding: 0 16px;
+
+  .scores-table {
+    width: 100%;
+
+    .score-value {
+      min-width: 50px;
+      display: inline-block;
+    }
+
+    td {
+      font-size: 18px !important;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      text-align: right !important;
+    }
   }
 }
