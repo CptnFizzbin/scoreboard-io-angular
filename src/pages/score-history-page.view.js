@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-  Paper,
   SelectField,
   MenuItem,
   Table,
@@ -9,14 +8,10 @@ import {
   TableHeaderColumn,
   TableBody,
   TableRowColumn,
-  IconButton,
   Popover,
-  FlatButton,
 } from 'material-ui';
 
-import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
-import AddCircleOutlineIcon from 'material-ui/svg-icons/content/add-circle-outline';
-import RemoveCircleOutlineIcon from 'material-ui/svg-icons/content/remove-circle-outline';
+import ScoreEditorView from '../score/score-editor.view';
 
 import './score-history-page.scss';
 
@@ -25,29 +20,53 @@ class ScoreHistoryPageView extends Component {
     super(props);
 
     this.onEditScore = this.onEditScore.bind(this);
-    this.onDoneEditScores = this.onDoneEditScores.bind(this);
+    this.onScorePlus = this.onScorePlus.bind(this);
+    this.onScoreMinus = this.onScoreMinus.bind(this);
+    this.onDoneScoreEdit = this.onDoneScoreEdit.bind(this);
 
     this.state = {
       showPopover: false,
-      anchorEl: null
+      anchorEl: null,
+      selectedScore: null
     }
   }
 
   onEditScore(e) {
-    console.log('ping');
-
     this.setState({
       showPopover: true,
-      anchorEl: e.currentTarget.parentElement
+      anchorEl: e.currentTarget,
+      selectedScore: {value: 6}
     })
   }
 
-  onDoneEditScores() {
-    console.log('pong');
+  onScorePlus() {
+    let score = this.state.selectedScore;
 
     this.setState({
-      showPopover: false
+      selectedScore: {
+        ...score,
+        value: score.value + 1,
+      }
+    })
+  }
+
+  onScoreMinus() {
+    let score = this.state.selectedScore;
+
+    this.setState({
+      selectedScore: {
+        ...score,
+        value: score.value - 1,
+      }
+    })
+  }
+
+  onDoneScoreEdit() {
+    this.setState({
+      showPopover: false,
     });
+
+    this.props.onDoneScoreEdit(this.state.selectedScore);
   }
 
   render = () => (
@@ -83,67 +102,12 @@ class ScoreHistoryPageView extends Component {
         <TableBody displayRowCheckbox={false}>
           <TableRow>
             <TableRowColumn>1</TableRowColumn>
-            <TableRowColumn>
-                <span className="score-value">
-                  -6
-                </span>
-              <IconButton
-                onClick={this.onEditScore}
-                style={{height: 48, width: 48}}
-                iconStyle={{height: 16, width: 16}}
-              >
-                <ModeEditIcon  />
-              </IconButton>
+            <TableRowColumn >
+              <div className='score-value' onClick={this.onEditScore}>
+                +6
+              </div>
             </TableRowColumn>
             <TableRowColumn>4</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>2</TableRowColumn>
-            <TableRowColumn>
-                <span className="score-value">
-                  -6
-                </span>
-              <IconButton
-                onClick={this.onEditScore}
-                style={{height: 48, width: 48}}
-                iconStyle={{height: 16, width: 16}}
-              >
-                <ModeEditIcon  />
-              </IconButton>
-            </TableRowColumn>
-            <TableRowColumn>2</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>3</TableRowColumn>
-            <TableRowColumn>
-                <span className="score-value">
-                  -6
-                </span>
-                <IconButton
-                  onClick={this.onEditScore}
-                  style={{height: 48, width: 48}}
-                  iconStyle={{height: 16, width: 16}}
-                >
-                  <ModeEditIcon  />
-                </IconButton>
-            </TableRowColumn>
-            <TableRowColumn>8</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>4</TableRowColumn>
-            <TableRowColumn>
-              <span className="score-value">
-                -6
-              </span>
-              <IconButton
-                onClick={this.onEditScore}
-                style={{height: 48, width: 48}}
-                iconStyle={{height: 16, width: 16}}
-              >
-                <ModeEditIcon  />
-              </IconButton>
-            </TableRowColumn>
-            <TableRowColumn>5</TableRowColumn>
           </TableRow>
         </TableBody>
       </Table>
@@ -151,18 +115,17 @@ class ScoreHistoryPageView extends Component {
         style={{padding: '8px'}}
         open={this.state.showPopover}
         anchorEl={this.state.anchorEl}
-        onRequestClose={this.onDoneEditScores}
+        onRequestClose={this.onDoneScoreEdit}
         anchorOrigin={{horizontal: 'middle', vertical: 'center'}}
         targetOrigin={{horizontal: 'middle', vertical: 'center'}}
         autoCloseWhenOffScreen={false}
       >
-        <IconButton>
-          <RemoveCircleOutlineIcon />
-        </IconButton>
-        <span>+6</span>
-        <IconButton>
-          <AddCircleOutlineIcon />
-        </IconButton>
+        <ScoreEditorView
+          onScorePlus={ this.onScorePlus }
+          onScoreMinus={ this.onScoreMinus }
+          showSign={true}
+          score={this.state.selectedScore}
+        />
       </Popover>
     </div>
   );

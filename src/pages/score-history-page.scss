@@ -8,16 +8,41 @@
     width: 100%;
 
     .score-value {
-      min-width: 50px;
-      display: inline-block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+      height: 100%;
+
+      cursor: pointer;
+
+      transition: background 0.5s;
+
+      &:hover {
+        background: #e7e7e7;
+      }
     }
 
     td {
       font-size: 18px !important;
     }
 
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 25%;
+      text-align: left !important;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 50%;
+      text-align: center !important;
+    }
+
     th:nth-child(3),
     td:nth-child(3) {
+      width: 25%;
       text-align: right !important;
     }
   }
