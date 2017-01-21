@@ -8,7 +8,8 @@ import {browserHistory} from "react-router";
 import {createStore, applyMiddleware} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {createEpicMiddleware} from 'redux-observable';
-import {persistStore, autoRehydrate} from 'redux-persist'
+import {persistStore, autoRehydrate} from 'redux-persist';
+import thunk from 'redux-thunk';
 
 //other vendor imports
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -31,11 +32,12 @@ injectTapEventPlugin();
 const epicMware = createEpicMiddleware(epics);
 const routerMware = routerMiddleware(browserHistory);
 
-export let store = createStore(
+let store = createStore(
   reducers,
   composeWithDevTools(
     applyMiddleware(epicMware),
-    applyMiddleware(routerMware)
+    applyMiddleware(routerMware),
+    applyMiddleware(thunk),
   ),
   autoRehydrate()
 );
