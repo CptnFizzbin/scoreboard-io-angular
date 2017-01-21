@@ -17,7 +17,12 @@ export function roundEnding() {
 }
 
 export function roundEnded() {
-  return {
-    type: ROUND_ENDED
+  return (dispatch, getState) => {
+    let state = getState();
+
+    dispatch({
+      type: ROUND_ENDED,
+      roundNumber: state.round.roundNumber,
+    });
   }
 }

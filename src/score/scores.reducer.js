@@ -31,13 +31,16 @@ export default function scores(state = initialState, action) {
             ...score,
             value: score.roundScores
               .reduce((sum, score) => {
-                return sum + score
+                return sum + score.score
               }, score.roundScore),
             roundScore: 0,
             scoreChanged: false,
             roundScores: [
-              score.roundScore,
-              ...score.roundScores
+              ...score.roundScores,
+              {
+                round: action.roundNumber,
+                score: score.roundScore,
+              },
             ],
           }
         });
