@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {
-  SelectField,
-  MenuItem,
   Table,
   TableHeader,
   TableRow,
@@ -11,6 +9,7 @@ import {
   Popover,
 } from 'material-ui';
 
+import PlayerSelect from '../player/player-select';
 import ScoreEditorView from '../score/score-editor.view';
 
 import './score-history-page.scss';
@@ -19,6 +18,7 @@ class ScoreHistoryPageView extends Component {
   constructor (props) {
     super(props);
 
+    this.onPlayerSelect = this.onPlayerSelect.bind(this);
     this.onEditScore = this.onEditScore.bind(this);
     this.onScorePlus = this.onScorePlus.bind(this);
     this.onScoreMinus = this.onScoreMinus.bind(this);
@@ -27,8 +27,17 @@ class ScoreHistoryPageView extends Component {
     this.state = {
       showPopover: false,
       anchorEl: null,
-      selectedScore: null
+      selectedScore: null,
+      selectedPlayerId: null,
     }
+  }
+
+  onPlayerSelect(selectedId) {
+    console.log(selectedId);
+
+    this.setState({
+      selectedPlayerId: selectedId,
+    })
   }
 
   onEditScore(e) {
@@ -71,23 +80,7 @@ class ScoreHistoryPageView extends Component {
 
   render = () => (
     <div className="score-history-page">
-      <div className="player-select-area">
-        <SelectField
-          fullWidth={true}
-          floatingLabelText="Player"
-          value={1}
-        >
-          <MenuItem value={1} primaryText="Stephen"/>
-          <MenuItem value={2} primaryText="Stephen"/>
-          <MenuItem value={3} primaryText="Stephen"/>
-          <MenuItem value={4} primaryText="Stephen"/>
-          <MenuItem value={5} primaryText="Stephen"/>
-          <MenuItem value={6} primaryText="Stephen"/>
-          <MenuItem value={7} primaryText="Stephen"/>
-          <MenuItem value={8} primaryText="Stephen"/>
-          <MenuItem value={9} primaryText="Stephen"/>
-        </SelectField>
-      </div>
+      <PlayerSelect onPlayerSelect={this.onPlayerSelect} selectedId={this.state.selectedPlayerId} />
       <Table className="scores-table" selectable={false}>
         <TableHeader
           displaySelectAll={false}
@@ -111,6 +104,7 @@ class ScoreHistoryPageView extends Component {
           </TableRow>
         </TableBody>
       </Table>
+
       <Popover
         style={{padding: '8px'}}
         open={this.state.showPopover}

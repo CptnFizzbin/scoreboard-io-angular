@@ -9,7 +9,9 @@ const mapStateToProps = () => {
 };
 
 const mapDispatchToProps = () => {
-  return {};
+  return {
+    onDoneScoreEdit: () => {}
+  };
 };
 
 const ScoreHistoryPage = connect(
