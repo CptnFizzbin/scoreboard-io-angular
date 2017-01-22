@@ -5,6 +5,7 @@ export const CREATE_PLAYER = 'sbio/player/createPlayer';
 export const ADD_PLAYER = 'sbio/player/addPlayer';
 
 export const SET_SCORE_REL = 'sbio/score/setScoreRel';
+export const SET_ROUND_SCORE = 'sbio/score/setRoundScore';
 
 export const ROUND_STARTED = 'sbio/round/roundStarted';
 export const ROUND_ENDING = 'sbio/round/roundEnding';

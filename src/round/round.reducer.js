@@ -7,15 +7,18 @@ import {
 } from "../app.actions";
 
 const initialState = {
-  roundNumber: 0,
+  roundNumber: 1,
   roundActive: false,
   roundEnding: false
 };
 
 export default function round(state = initialState, action) {
   switch (action.type) {
-    case NEW_GAME || REMATCH:
-      return initialState;
+    case NEW_GAME:
+    case REMATCH:
+      return {
+        ...initialState,
+      };
     case SET_SCORE_REL:
       return {
         ...state,

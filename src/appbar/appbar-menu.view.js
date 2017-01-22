@@ -17,6 +17,7 @@ const AppbarMenuView = muiThemeable()(
     muiTheme,
     onRematch,
     onNewGame,
+    onScoreHistory,
     onAbout,
   }) => (
     <IconMenu
@@ -28,6 +29,8 @@ const AppbarMenuView = muiThemeable()(
     >
       <MenuItem primaryText="Rematch" onClick={onRematch} />
       <MenuItem primaryText="New Game" onClick={onNewGame}/>
+      <Divider />
+      <MenuItem primaryText="Score History" onClick={onScoreHistory}/>
       <Divider />
       <MenuItem primaryText="About" onClick={onAbout}/>
     </IconMenu>

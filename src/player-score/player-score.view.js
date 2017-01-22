@@ -1,10 +1,7 @@
 import React, {PropTypes} from 'react';
-import IconButton from 'material-ui/IconButton';
-import AddCircleOutlineIcon from 'material-ui/svg-icons/content/add-circle-outline';
-import RemoveCircleOutlineIcon from 'material-ui/svg-icons/content/remove-circle-outline';
 
-import RoundScore from './active-round-score';
-import PreviousRoundScores from '../round/previous-round-scores';
+import ActiveRoundScore from './active-round-score';
+import ScoreEditorView from '../score/score-editor.view';
 
 import './player-score.scss';
 
@@ -30,21 +27,18 @@ const PlayerScoreView = ({
 }) => (
   <div className="sbio-player-score">
     <div className="player-info">
-      <span className="player-name">{player.name}</span>
+      <span className="player-name">
+        {player.name}
+      </span>
       <span className="round-score">
-        <RoundScore playerId={player.id}/>
+        <ActiveRoundScore playerId={player.id}/>
       </span>
-      <span className="score">
-        <IconButton onTouchTap={onScoreMinus} disableTouchRipple={true}>
-          <RemoveCircleOutlineIcon />
-        </IconButton>
-        <span className="score-value">{score.value}</span>
-        <IconButton onTouchTap={onScorePlus} disableTouchRipple={true}>
-          <AddCircleOutlineIcon />
-        </IconButton>
-      </span>
+      <ScoreEditorView
+        onScoreMinus={onScoreMinus}
+        onScorePlus={onScorePlus}
+        score={score}
+      />
     </div>
-    <PreviousRoundScores playerId={player.id} />
   </div>
 );
 
