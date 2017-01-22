@@ -8,7 +8,7 @@ import TableRowColumn from 'material-ui/Table/TableRowColumn';
 
 const propTypes = {
   roundScores: PropTypes.arrayOf(PropTypes.shape({
-    score: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
     round: PropTypes.number.isRequired,
     totalScore: PropTypes.number.isRequired,
   })).isRequired,
@@ -39,8 +39,8 @@ const ScoreHistoryListView = ({
             {score.round}
           </TableRowColumn>
           <TableRowColumn >
-            <div className='score-value' onClick={onEditScore}>
-              {score.score >= 1 ? '+' + score.score : score.score}
+            <div className='score-value' onClick={(e) => onEditScore(e, score)}>
+              {score.value >= 1 ? '+' + score.value : score.value}
             </div>
           </TableRowColumn>
           <TableRowColumn>

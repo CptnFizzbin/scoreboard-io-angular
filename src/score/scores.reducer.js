@@ -31,7 +31,7 @@ export default function scores(state = initialState, action) {
             ...score,
             value: score.roundScores
               .reduce((sum, score) => {
-                return sum + score.score
+                return sum + score.value
               }, score.roundScore),
             roundScore: 0,
             scoreChanged: false,
@@ -39,7 +39,7 @@ export default function scores(state = initialState, action) {
               ...score.roundScores,
               {
                 round: action.roundNumber,
-                score: score.roundScore,
+                value: score.roundScore,
               },
             ],
           }

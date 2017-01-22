@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
         let totalScore = playerScore.roundScores
           .filter((score) => score.round <= roundScore.round)
           .reduce((totalScore, score) => {
-            return totalScore + score.score
+            return totalScore + score.value
           }, 0);
 
         return {
