@@ -1,15 +1,8 @@
 import React, {Component} from 'react';
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHeaderColumn,
-  TableBody,
-  TableRowColumn,
-  Popover,
-} from 'material-ui';
+import Popover from 'material-ui/Popover';
 
 import PlayerSelect from '../player/player-select';
+import ScoreHistoryList from '../score-history/score-history-list';
 import ScoreEditorView from '../score/score-editor.view';
 
 import './score-history-page.scss';
@@ -33,9 +26,7 @@ class ScoreHistoryPageView extends Component {
   }
 
   onPlayerSelect(selectedId) {
-    console.log(selectedId);
-
-    this.setState({
+    this.setState({ 
       selectedPlayerId: selectedId,
     })
   }
@@ -81,29 +72,7 @@ class ScoreHistoryPageView extends Component {
   render = () => (
     <div className="score-history-page">
       <PlayerSelect onPlayerSelect={this.onPlayerSelect} selectedId={this.state.selectedPlayerId} />
-      <Table className="scores-table" selectable={false}>
-        <TableHeader
-          displaySelectAll={false}
-          adjustForCheckbox={false}
-        >
-          <TableRow>
-            <TableHeaderColumn>Round</TableHeaderColumn>
-            <TableHeaderColumn>Score</TableHeaderColumn>
-            <TableHeaderColumn>Total</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody displayRowCheckbox={false}>
-          <TableRow>
-            <TableRowColumn>1</TableRowColumn>
-            <TableRowColumn >
-              <div className='score-value' onClick={this.onEditScore}>
-                +6
-              </div>
-            </TableRowColumn>
-            <TableRowColumn>4</TableRowColumn>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <ScoreHistoryList playerId={this.state.selectedPlayerId} />
 
       <Popover
         style={{padding: '8px'}}
