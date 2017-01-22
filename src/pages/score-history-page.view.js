@@ -26,16 +26,16 @@ class ScoreHistoryPageView extends Component {
   }
 
   onPlayerSelect(selectedId) {
-    this.setState({ 
+    this.setState({
       selectedPlayerId: selectedId,
     })
   }
 
-  onEditScore(e) {
+  onEditScore(e, score) {
     this.setState({
       showPopover: true,
       anchorEl: e.currentTarget,
-      selectedScore: {value: 6}
+      selectedScore: score,
     })
   }
 
@@ -72,7 +72,7 @@ class ScoreHistoryPageView extends Component {
   render = () => (
     <div className="score-history-page">
       <PlayerSelect onPlayerSelect={this.onPlayerSelect} selectedId={this.state.selectedPlayerId} />
-      <ScoreHistoryList playerId={this.state.selectedPlayerId} />
+      <ScoreHistoryList playerId={this.state.selectedPlayerId} onEditScore={this.onEditScore} />
 
       <Popover
         style={{padding: '8px'}}

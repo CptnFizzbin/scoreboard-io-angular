@@ -30,10 +30,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onEditScore: () => {
-    }
+    onEditScore: ownProps.onEditScore,
   };
 };
 
