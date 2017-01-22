@@ -4,6 +4,7 @@ import {
   NEW_GAME,
   REMATCH,
   ROUND_ENDED,
+  SET_ROUND_SCORE,
 } from "../app.actions";
 
 let initialState = [
@@ -31,13 +32,17 @@ export default function scores(state = initialState, action) {
             ...score,
             value: score.roundScores
               .reduce((sum, score) => {
-                return sum + score
+                return sum + score.value
               }, score.roundScore),
             roundScore: 0,
             scoreChanged: false,
             roundScores: [
-              score.roundScore,
-              ...score.roundScores
+              ...score.roundScores,
+              {
+                playerId: score.playerId,
+                round: action.roundNumber,
+                value: score.roundScore,
+              },
             ],
           }
         });
@@ -62,6 +67,32 @@ export default function scores(state = initialState, action) {
               value: score.value + action.payload.relScore,
               roundScore: score.roundScore + action.payload.relScore,
               scoreChanged: true,
+            };
+          }
+          return score;
+        });
+    case SET_ROUND_SCORE:
+      return [...state]
+        .map(score => {
+          if (score.playerId === action.payload.playerId) {
+            let newRoundScores = score.roundScores
+              .map((roundScore) => {
+                if (roundScore.round === action.payload.round) {
+                  return {
+                    ...roundScore,
+                    value: action.payload.value
+                  }
+                }
+                return roundScore;
+              });
+
+            return {
+              ...score,
+              value: newRoundScores
+                .reduce((sum, score) => {
+                  return sum + score.value
+                }, 0),
+              roundScores: newRoundScores
             };
           }
           return score;

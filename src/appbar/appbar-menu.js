@@ -27,6 +27,10 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
 
+    onScoreHistory: function () {
+      dispatch(push('/scores/history'));
+    },
+
     onAbout: function () {
       dispatch(push('/about'));
     }

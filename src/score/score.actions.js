@@ -1,6 +1,7 @@
 import {
   SET_SCORE_REL,
-} from "../app.actions";
+  SET_ROUND_SCORE,
+} from '../app.actions';
 
 export function setScoreRel(playerId, relScore) {
   return {
@@ -18,4 +19,15 @@ export function incrementPlayerScore(playerId) {
 
 export function decrementPlayerScore(playerId) {
   return setScoreRel(playerId, -1);
+}
+
+export function setRoundScore(playerId, round, value) {
+  return {
+    type: SET_ROUND_SCORE,
+    payload: {
+      playerId,
+      round,
+      value,
+    },
+  }
 }
