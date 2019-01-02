@@ -1,0 +1,77 @@
+* { box-sizing: border-box }
+
+@import '~@angular/material/core/theming/all-theme';
+// Plus imports for other components in your app.
+
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include md-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$primary: md-palette($md-indigo);
+$accent: md-palette($md-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$warn: md-palette($md-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$theme: md-light-theme($primary, $accent, $warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($theme);
+
+html {
+  background-color: #f9f9f9;
+}
+
+body {
+  margin: 0
+}
+
+main {
+  display: inline-block;
+  width: 100vw;
+  padding: 1rem;
+}
+
+footer {
+  display: inline-block;
+  width: 100vw;
+  height: 50px;
+  padding: 20px;
+  text-align: right;
+  color: grey;
+}
+
+.badge {
+  display: inline-block;
+  padding: .5rem;
+  border-radius: 5px;
+
+  &.placement {
+    vertical-align: middle;
+    text-align: center;
+    min-width: 3rem;
+    margin-right: 5px;
+    background-color: #efefef;
+
+    &.placement-1 {
+      background-color: darkgoldenrod;
+    }
+    &.placement-2 {
+      background-color: silver;
+    }
+    &.placement-3 {
+      background-color: saddlebrown;
+      color: white
+    }
+  }
+}
+
+.space-below {
+  margin-bottom: 1rem;
+}

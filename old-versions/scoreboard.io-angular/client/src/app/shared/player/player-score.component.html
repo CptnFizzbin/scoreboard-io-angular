@@ -1,0 +1,16 @@
+<md-card class="player-score">
+  <md-card-content class="header">
+    <span class="badge placement" [ngClass]="['placement-' + playerScore.placement]">
+      {{placementString}}
+    </span>
+    <span class="name">
+      {{player.name}}
+    </span>
+    <div class="badge round-score" [ngClass]="{'active': relScoreActive }"> {{roundScoreString}} </div>
+  </md-card-content>
+  <md-card-content class="score-area">
+    <button md-raised-button (click)="removeScore(1)">-</button>
+    <span class="score">{{player.score}}</span>
+    <button md-raised-button (click)="addScore(1)">+</button>
+  </md-card-content>
+</md-card>
